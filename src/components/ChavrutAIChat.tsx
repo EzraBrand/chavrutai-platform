@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { X, MessageCircle } from 'lucide-react';
 
-const ChavrutAIChat: React.FC = () => {
-  const [minimized, setMinimized] = useState(false);
-  const [visible, setVisible] = useState(true);
+interface ChavrutAIChatProps {
+  onClose: () => void;
+}
 
-  if (!visible) return null;
+const ChavrutAIChat: React.FC<ChavrutAIChatProps> = ({ onClose }) => {
+  const [minimized, setMinimized] = useState(false);
 
   return (
     <div className="fixed bottom-0 right-0 md:mr-4 md:mb-4 z-10">
@@ -20,7 +21,7 @@ const ChavrutAIChat: React.FC = () => {
               <span className="text-xs leading-none">▲</span>
             </button>
             <button
-              onClick={() => setVisible(false)}
+              onClick={onClose}
               className="hover:bg-amber-700 p-1 rounded"
             >
               <X className="h-3 w-3" />
@@ -28,7 +29,7 @@ const ChavrutAIChat: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div className="w-64 md:w-72 h-auto max-h-64 bg-white border border-amber-200 rounded-t-lg shadow-lg flex flex-col">
+        <div className="w-64 md:w-72 h-auto max-h-[32rem] bg-white border border-amber-200 rounded-t-lg shadow-lg flex flex-col">
           <div className="bg-amber-800 text-amber-50 p-1.5 flex items-center justify-between rounded-t-lg">
             <h3 className="font-bold text-sm" style={{ fontFamily: "'Palatino Linotype', 'Book Antiqua', Palatino, serif" }}>
               ChavrutAI Assistant
@@ -41,7 +42,7 @@ const ChavrutAIChat: React.FC = () => {
                 <span className="text-lg leading-none">_</span>
               </button>
               <button
-                onClick={() => setVisible(false)}
+                onClick={onClose}
                 className="hover:bg-amber-700 p-1 rounded"
               >
                 <X className="h-4 w-4" />
