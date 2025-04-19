@@ -21,7 +21,7 @@ https://legendary-telegram-g4qg9j77gxjfgw5-5186.app.github.dev/
 
 #1 (top):
 
-<img width="545" alt="image" src="https://github.com/user-attachments/assets/4bfb169a-07a5-402e-aa76-3ae6959cfa60" />
+<img width="562" alt="image" src="https://github.com/user-attachments/assets/b83be12a-72ae-4854-95d6-234d1e2dd137" />
 
 #2 (scrolled to bottom):
 
