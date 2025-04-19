@@ -7,7 +7,7 @@ A further stage will incorporate inline glossaries, AI-assisted chavruta, and ex
 
 - 📖 Hebrew/English side-by-side view of the Talmud
 - 🗂 Tabbed interface: Text, Key Terms, Analysis
-- ⚙️ Responsive UI built with React and Tailwind
+- ⚙️ Responsive UI built with React
 
 ## Screenshots of mock-ups and pre-alpha
 Claude mock-up:
