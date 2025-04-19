@@ -8,6 +8,7 @@ import TabsPanel from './TabsPanel'
 import SugyaViewer from './SugyaViewer'
 import RightSidebar from './RightSidebar'
 import Footer from './Footer'
+import BreadcrumbNav from './BreadcrumbNav'
 
 interface DisplaySettings {
   hebrewFontSize: 'small' | 'medium' | 'large';
@@ -38,8 +39,16 @@ const App = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div 
+      className="min-h-screen flex flex-col bg-amber-50" 
+      style={{
+        backgroundImage: "url('https://www.transparenttextures.com/patterns/parchment.png')",
+        backgroundRepeat: "repeat",
+        backgroundBlendMode: "soft-light",
+      }}
+    >
       <HeaderNav />
+      <BreadcrumbNav />
       <div className="flex flex-1">
         <SidebarNav />
         <main className="flex-1 flex">
