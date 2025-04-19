@@ -3,7 +3,7 @@ module.exports = {
   content: [
     "./index.html",
     "./*.{js,ts,jsx,tsx}",
-    "./**/*.{js,ts,jsx,tsx}", // This ensures all subdirectories are processed
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {

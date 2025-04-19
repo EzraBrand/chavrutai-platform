@@ -2,43 +2,133 @@ import React from 'react';
 import { BookMarked, Search, Menu, User, SlidersHorizontal } from 'lucide-react';
 
 const HeaderNav: React.FC = () => {
+  // Inline styles for more immediate styling effect
+  const styles = {
+    header: {
+      padding: '1rem',
+    },
+    logoContainer: {
+      display: 'flex',
+      alignItems: 'center',
+    },
+    logoBox: {
+      backgroundColor: '#92400e', // amber-800
+      color: '#fffbeb', // amber-50
+      padding: '0.5rem',
+      borderRadius: '0.25rem',
+      marginRight: '0.75rem',
+      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+    },
+    logoText: {
+      fontSize: '1.5rem',
+      fontWeight: 'bold',
+      fontFamily: "'Crimson Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, serif",
+    },
+    navLink: {
+      padding: '0.25rem 0.75rem',
+      borderRadius: '0.25rem',
+      transition: 'background-color 0.2s',
+    },
+    searchContainer: {
+      position: 'relative',
+    },
+    searchInput: {
+      padding: '0.25rem 0.75rem',
+      paddingRight: '2rem',
+      border: '1px solid #fde68a',
+      borderRadius: '0.25rem',
+      boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)',
+    },
+    searchIcon: {
+      position: 'absolute',
+      right: '0.5rem',
+      top: '50%',
+      transform: 'translateY(-50%)',
+      color: '#f59e0b', // amber-500
+    },
+    signInButton: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.25rem',
+      padding: '0.375rem 0.75rem',
+      backgroundColor: '#92400e', // amber-800
+      color: '#fffbeb', // amber-50
+      borderRadius: '0.25rem',
+      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+      transition: 'background-color 0.2s',
+    },
+    settingsButton: {
+      color: '#92400e', // amber-800
+      padding: '0.375rem',
+      borderRadius: '0.25rem',
+      transition: 'background-color 0.2s',
+    }
+  };
+
   return (
-    <header className="bg-amber-100 text-amber-900 p-4 shadow-lg border-b border-amber-200">
+    <header style={styles.header}>
       <div className="flex justify-between items-center">
         <div className="flex items-center space-x-4">
-          <div className="flex items-center">
-            <div className="bg-amber-800 text-amber-100 p-2 rounded mr-3 shadow-md">
+          <div style={styles.logoContainer}>
+            <div style={styles.logoBox}>
               <BookMarked className="h-6 w-6" />
             </div>
-            <h1 className="text-2xl font-bold" style={{ fontFamily: "'Palatino Linotype', 'Book Antiqua', Palatino, serif" }}>
+            <h1 style={styles.logoText}>
               ChavrutAI
             </h1>
           </div>
           <div className="hidden md:flex space-x-4">
-            <button className="px-3 py-1 rounded hover:bg-amber-200">Tractates</button>
-            <button className="px-3 py-1 rounded hover:bg-amber-200">Topics</button>
-            <button className="px-3 py-1 rounded hover:bg-amber-200">Resources</button>
-            <button className="px-3 py-1 rounded hover:bg-amber-200">About</button>
+            <button 
+              style={styles.navLink} 
+              className="hover:bg-amber-200"
+            >
+              Tractates
+            </button>
+            <button 
+              style={styles.navLink}
+              className="hover:bg-amber-200"
+            >
+              Topics
+            </button>
+            <button 
+              style={styles.navLink}
+              className="hover:bg-amber-200"
+            >
+              Resources
+            </button>
+            <button 
+              style={styles.navLink}
+              className="hover:bg-amber-200"
+            >
+              About
+            </button>
           </div>
         </div>
 
         <div className="flex items-center space-x-3">
-          <div className="relative">
+          <div style={styles.searchContainer}>
             <input
               type="text"
               placeholder="Search..."
-              className="py-1 px-3 rounded text-gray-800 w-32 md:w-48 border border-amber-200 shadow-sm"
+              style={styles.searchInput}
+              className="w-32 md:w-48 focus:outline-none focus:ring-1 focus:ring-amber-400"
             />
-            <Search className="absolute right-2 top-1.5 h-4 w-4 text-amber-500" />
+            <Search style={styles.searchIcon} className="h-4 w-4" />
           </div>
           <button className="md:hidden">
-            <Menu className="h-6 w-6" />
+            <Menu className="h-6 w-6 text-amber-800" />
           </button>
-          <button className="hidden md:flex items-center space-x-1 px-3 py-1.5 bg-amber-800 text-amber-50 rounded hover:bg-amber-900 shadow-sm">
+          <button 
+            className="hidden md:flex hover:bg-amber-900"
+            style={styles.signInButton}
+          >
             <User className="h-4 w-4" />
             <span>Sign In</span>
           </button>
-          <button className="hidden md:block text-amber-800 hover:bg-amber-200 p-1.5 rounded">
+          <button 
+            className="hidden md:block hover:bg-amber-200"
+            style={styles.settingsButton}
+          >
             <SlidersHorizontal className="h-5 w-5" />
           </button>
         </div>

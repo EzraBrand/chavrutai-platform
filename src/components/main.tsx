@@ -10,6 +10,69 @@ import RightSidebar from './RightSidebar'
 import Footer from './Footer'
 import BreadcrumbNav from './BreadcrumbNav'
 
+// CSS styles for direct application
+const styles = {
+  app: {
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column' as const,
+    backgroundColor: '#fffbeb', // amber-50
+    backgroundImage: "url('https://www.transparenttextures.com/patterns/parchment.png')",
+    backgroundRepeat: 'repeat',
+    backgroundBlendMode: 'soft-light' as const,
+  },
+  header: {
+    backgroundColor: '#fef3c7', // amber-100
+    borderBottom: '1px solid #fde68a', // amber-200
+    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+  },
+  breadcrumb: {
+    backgroundColor: '#fffbeb', // amber-50
+    borderBottom: '1px solid #fde68a', // amber-200
+    padding: '0.5rem 1rem',
+    color: '#92400e', // amber-800
+  },
+  sidebar: {
+    backgroundColor: '#fef3c7', // amber-100
+    borderRight: '1px solid #fde68a', // amber-200
+    boxShadow: '2px 0 5px rgba(0, 0, 0, 0.05)',
+  },
+  content: {
+    padding: '1rem',
+  },
+  footer: {
+    backgroundColor: '#fef3c7', // amber-100
+    borderTop: '1px solid #fde68a', // amber-200
+    padding: '0.5rem',
+    fontSize: '0.75rem',
+    color: '#92400e', // amber-800
+  },
+  tabsPanel: {
+    borderBottom: '1px solid #fde68a', // amber-200
+    marginBottom: '1rem',
+    display: 'flex',
+  },
+  activeTab: {
+    borderBottom: '2px solid #b45309', // amber-700
+    fontWeight: '500',
+    color: '#92400e', // amber-800
+  },
+  tab: {
+    padding: '0.5rem 1rem',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  sugyaViewer: {
+    backgroundColor: 'white',
+    backgroundImage: "url('https://www.transparenttextures.com/patterns/parchment.png')",
+    backgroundBlendMode: 'soft-light' as const,
+    border: '1px solid #fde68a', // amber-200
+    borderRadius: '0.375rem',
+    padding: '1.5rem',
+    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+  }
+};
+
 interface DisplaySettings {
   hebrewFontSize: 'small' | 'medium' | 'large';
   englishFontSize: 'small' | 'medium' | 'large';
@@ -38,33 +101,73 @@ const App = () => {
     });
   }, []);
 
+  // Custom styles for the font families
+  useEffect(() => {
+    // Add Google Fonts for Palatino, Roboto, and Hebrew fonts if not already in the head
+    if (!document.getElementById('google-fonts')) {
+      const link = document.createElement('link');
+      link.id = 'google-fonts';
+      link.rel = 'stylesheet';
+      link.href = 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Crimson+Pro:wght@400;600;700&family=Open+Sans+Hebrew:wght@300;400;700&display=swap';
+      document.head.appendChild(link);
+    }
+
+    // Add default font styles
+    const style = document.createElement('style');
+    style.textContent = `
+      body { 
+        font-family: 'Roboto', 'Segoe UI', Arial, sans-serif; 
+        color: #1a202c;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Crimson Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+      }
+      [dir="rtl"] {
+        font-family: 'Open Sans Hebrew', Calibri, Arial, sans-serif;
+      }
+    `;
+    document.head.appendChild(style);
+  }, []);
+
   return (
-    <div 
-      className="min-h-screen flex flex-col bg-amber-50" 
-      style={{
-        backgroundImage: "url('https://www.transparenttextures.com/patterns/parchment.png')",
-        backgroundRepeat: "repeat",
-        backgroundBlendMode: "soft-light",
-      }}
-    >
-      <HeaderNav />
-      <BreadcrumbNav />
+    <div style={styles.app}>
+      <div style={styles.header}>
+        <HeaderNav />
+      </div>
+      
+      <div style={styles.breadcrumb}>
+        <BreadcrumbNav />
+      </div>
+      
       <div className="flex flex-1">
-        <SidebarNav />
+        <div style={styles.sidebar} className="hidden md:block w-48 lg:w-64 overflow-y-auto p-2">
+          <SidebarNav />
+        </div>
+        
         <main className="flex-1 flex">
-          <div className="flex-1 p-4">
-            <TabsPanel activeTab={activeTab} setActiveTab={setActiveTab} />
-            <SugyaViewer 
-              hebrewText={hebrewText}
-              englishText={englishText}
-              highlightedSection={highlightedSection}
-              onHighlight={setHighlightedSection}
-            />
+          <div style={styles.content} className="flex-1">
+            <div style={styles.tabsPanel}>
+              <TabsPanel activeTab={activeTab} setActiveTab={setActiveTab} />
+            </div>
+            
+            <div style={styles.sugyaViewer}>
+              <SugyaViewer 
+                hebrewText={hebrewText}
+                englishText={englishText}
+                highlightedSection={highlightedSection}
+                onHighlight={setHighlightedSection}
+              />
+            </div>
           </div>
+          
           <RightSidebar onShowChat={() => setShowChat(true)} />
         </main>
       </div>
-      <Footer />
+      
+      <div style={styles.footer}>
+        <Footer />
+      </div>
+      
       {showChat && <ChavrutAIChat onClose={() => setShowChat(false)} />}
     </div>
   )
