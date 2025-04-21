@@ -1,7 +1,11 @@
 import React from 'react';
-import { BookMarked, Search, Menu, User, SlidersHorizontal } from 'lucide-react';
+import { BookMarked, Search, Menu, User, SlidersHorizontal, MessageCircle } from 'lucide-react';
 
-const HeaderNav: React.FC = () => {
+interface HeaderNavProps {
+  onShowChat: () => void;
+}
+
+const HeaderNav: React.FC<HeaderNavProps> = ({ onShowChat }) => {
   // Inline styles for more immediate styling effect
   const styles = {
     header: {
@@ -57,6 +61,18 @@ const HeaderNav: React.FC = () => {
       boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
       transition: 'background-color 0.2s',
     },
+    chatButton: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.25rem',
+      padding: '0.375rem 0.75rem',
+      backgroundColor: '#b45309', // amber-700
+      color: '#fffbeb', // amber-50
+      borderRadius: '0.25rem',
+      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+      transition: 'background-color 0.2s',
+      marginRight: '0.75rem',
+    },
     settingsButton: {
       color: '#92400e', // amber-800
       padding: '0.375rem',
@@ -106,6 +122,15 @@ const HeaderNav: React.FC = () => {
         </div>
 
         <div className="flex items-center space-x-3">
+          <button 
+            style={styles.chatButton}
+            className="hidden md:flex hover:bg-amber-800"
+            onClick={onShowChat}
+          >
+            <MessageCircle className="h-4 w-4" />
+            <span>Open ChavrutAI Chat</span>
+          </button>
+          
           <div style={styles.searchContainer}>
             <input
               type="text"

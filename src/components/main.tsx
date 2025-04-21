@@ -132,7 +132,7 @@ const App = () => {
   return (
     <div style={styles.app}>
       <div style={styles.header}>
-        <HeaderNav />
+        <HeaderNav onShowChat={() => setShowChat(true)} />
       </div>
       
       <div style={styles.breadcrumb}>
